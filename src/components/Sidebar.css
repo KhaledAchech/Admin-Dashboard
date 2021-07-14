@@ -12,6 +12,39 @@
   background: none;
 }
 
+.btn-logout {
+  position: absolute;
+  right: 0;
+  margin-right: 2rem;
+  font-size: 2rem;
+  display: flex;
+  background: none;
+}
+
+.btn-notification {
+  position: absolute;
+  left: 90%;
+  margin-right: 2rem;
+  font-size: 2rem;
+  display: flex;
+  background: none;
+}
+
+.admin-box {
+  position: absolute;
+  margin-right: 2rem;
+  margin-left: 2rem;
+  font-size: 2rem;
+  left: 30%;
+  display: flex;
+  background: none;
+}
+.welcome-sign {
+  display: flex;
+  background: none;
+  color: #c6b4ce;
+}
+
 .nav-menu {
   background-color: #202040;
   width: 250px;
