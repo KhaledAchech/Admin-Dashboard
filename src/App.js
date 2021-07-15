@@ -1,5 +1,5 @@
 import './App.css';
-import Sidebar from './components/Sidebar';
+import Sidebar from './components/Sidebar/Sidebar';
 import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Home from './pages/Home';
 import Notifications from './pages/Notifications';
@@ -7,6 +7,7 @@ import Orders from './pages/Orders';
 import Pasteries from './pages/Pastries';
 import Posts from './pages/Posts';
 import Users from './pages/Users';
+import Tables from './components/Tables/Tables';
 
 function App() {
   return (
@@ -19,7 +20,8 @@ function App() {
         <Route path = '/orders' component={Orders} />
         <Route path = '/pasteries' component={Pasteries} /> 
         <Route path = '/posts' component={Posts} />      
-        <Route path = '/users' component={Users} />      
+        <Route path = '/users' component={Users} /> 
+        <Route path = '/tables' component={Tables} />     
       </Switch>
     </Router>
     </>

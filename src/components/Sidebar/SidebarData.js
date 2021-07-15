@@ -38,6 +38,12 @@ export const SideBarData = [
         path : '/notifications',
         icon : <IoIcons.IoMdClipboard/>,
         cName : 'nav-text'
+    },
+    {
+        title : 'Tables',
+        path : '/tables',
+        icon : <IoIcons.IoIosSquare/>,
+        cName : 'nav-text'
     }
 
 ]
