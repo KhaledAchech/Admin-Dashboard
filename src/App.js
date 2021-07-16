@@ -8,6 +8,7 @@ import Pasteries from './pages/Pastries';
 import Posts from './pages/Posts';
 import Users from './pages/Users';
 import Tables from './components/Tables/Tables';
+import CheckBoxTable from './components/Tables/CheckBoxTable';
 
 function App() {
   return (
@@ -21,7 +22,8 @@ function App() {
         <Route path = '/pasteries' component={Pasteries} /> 
         <Route path = '/posts' component={Posts} />      
         <Route path = '/users' component={Users} /> 
-        <Route path = '/tables' component={Tables} />     
+        <Route path = '/tables' component={Tables} />
+        <Route path = '/checkBoxTables' component={CheckBoxTable} />         
       </Switch>
     </Router>
     </>
