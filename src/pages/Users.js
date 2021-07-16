@@ -1,11 +1,8 @@
 import React from 'react'
-
+import CheckBoxTable from '../components/Tables/CheckBoxTable';
 function Users() {
     return (
-        <div className = 'users'>
-            <h1>users</h1>
-        </div>
+            <CheckBoxTable/>
     )
 }
-
 export default Users

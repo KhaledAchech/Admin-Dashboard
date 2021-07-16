@@ -1,10 +1,8 @@
 import React from 'react'
-
+import Tables from '../components/Tables/Tables';
 function Pasteries() {
     return (
-        <div className = 'pasteries'>
-            <h1>pasteries</h1>
-        </div>
+        <Tables/>
     )
 }
 

@@ -2,43 +2,52 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { lighten, makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TablePagination from '@material-ui/core/TablePagination';
-import TableRow from '@material-ui/core/TableRow';
-import TableSortLabel from '@material-ui/core/TableSortLabel';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Paper from '@material-ui/core/Paper';
-import Checkbox from '@material-ui/core/Checkbox';
-import IconButton from '@material-ui/core/IconButton';
-import Tooltip from '@material-ui/core/Tooltip';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Switch from '@material-ui/core/Switch';
-import DeleteIcon from '@material-ui/icons/Delete';
-import FilterListIcon from '@material-ui/icons/FilterList';
+import 
+    {
+        Table,
+        TableBody,
+        TableCell, 
+        TableContainer,
+        TableHead,
+        TablePagination,
+        TableRow,
+        TableSortLabel,
+        Toolbar,
+        Typography,
+        Paper,
+        Checkbox,
+        IconButton,
+        Tooltip,
+        FormControlLabel,
+        Avatar,
+        Grid,
+        Switch
+    } from '@material-ui/core';
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit'
+import FilterListIcon from '@material-ui/icons/FilterList';
+import faker from 'faker';
+
+function createData(name,email , phone,  jobTitle, company, joinDate, status) {
+  return { name, email, phone, jobTitle, company, joinDate, status };
 }
 
+let STATUSES = ['Client', 'Pastry', 'Blocked'];
 const rows = [
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Donut', 452, 25.0, 51, 4.9),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-  createData('Honeycomb', 408, 3.2, 87, 6.5),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Jelly Bean', 375, 0.0, 94, 0.0),
-  createData('KitKat', 518, 26.0, 65, 7.0),
-  createData('Lollipop', 392, 0.2, 98, 0.0),
-  createData('Marshmallow', 318, 0, 81, 2.0),
-  createData('Nougat', 360, 19.0, 9, 37.0),
-  createData('Oreo', 437, 18.0, 63, 4.0),
+  createData(faker.name.findName(),faker.internet.email(),faker.phone.phoneNumber(), faker.name.jobTitle(), faker.company.companyName(), faker.date.past().toLocaleDateString('en-US'), STATUSES[Math.floor(Math.random() * STATUSES.length)]),
+  createData(faker.name.findName(),faker.internet.email(),faker.phone.phoneNumber(), faker.name.jobTitle(), faker.company.companyName(), faker.date.past().toLocaleDateString('en-US'), STATUSES[Math.floor(Math.random() * STATUSES.length)]),
+  createData(faker.name.findName(),faker.internet.email(),faker.phone.phoneNumber(), faker.name.jobTitle(), faker.company.companyName(), faker.date.past().toLocaleDateString('en-US'), STATUSES[Math.floor(Math.random() * STATUSES.length)]),
+  createData(faker.name.findName(),faker.internet.email(),faker.phone.phoneNumber(), faker.name.jobTitle(), faker.company.companyName(), faker.date.past().toLocaleDateString('en-US'), STATUSES[Math.floor(Math.random() * STATUSES.length)]),
+  createData(faker.name.findName(),faker.internet.email(),faker.phone.phoneNumber(), faker.name.jobTitle(), faker.company.companyName(), faker.date.past().toLocaleDateString('en-US'), STATUSES[Math.floor(Math.random() * STATUSES.length)]),
+  createData(faker.name.findName(),faker.internet.email(),faker.phone.phoneNumber(), faker.name.jobTitle(), faker.company.companyName(), faker.date.past().toLocaleDateString('en-US'), STATUSES[Math.floor(Math.random() * STATUSES.length)]),
+  createData(faker.name.findName(),faker.internet.email(),faker.phone.phoneNumber(), faker.name.jobTitle(), faker.company.companyName(), faker.date.past().toLocaleDateString('en-US'), STATUSES[Math.floor(Math.random() * STATUSES.length)]),
+  createData(faker.name.findName(),faker.internet.email(),faker.phone.phoneNumber(), faker.name.jobTitle(), faker.company.companyName(), faker.date.past().toLocaleDateString('en-US'), STATUSES[Math.floor(Math.random() * STATUSES.length)]),
+  createData(faker.name.findName(),faker.internet.email(),faker.phone.phoneNumber(), faker.name.jobTitle(), faker.company.companyName(), faker.date.past().toLocaleDateString('en-US'), STATUSES[Math.floor(Math.random() * STATUSES.length)]),
+  createData(faker.name.findName(),faker.internet.email(),faker.phone.phoneNumber(), faker.name.jobTitle(), faker.company.companyName(), faker.date.past().toLocaleDateString('en-US'), STATUSES[Math.floor(Math.random() * STATUSES.length)]),
+  createData(faker.name.findName(),faker.internet.email(),faker.phone.phoneNumber(), faker.name.jobTitle(), faker.company.companyName(), faker.date.past().toLocaleDateString('en-US'), STATUSES[Math.floor(Math.random() * STATUSES.length)]),
+  createData(faker.name.findName(),faker.internet.email(),faker.phone.phoneNumber(), faker.name.jobTitle(), faker.company.companyName(), faker.date.past().toLocaleDateString('en-US'), STATUSES[Math.floor(Math.random() * STATUSES.length)]),
+  createData(faker.name.findName(),faker.internet.email(),faker.phone.phoneNumber(), faker.name.jobTitle(), faker.company.companyName(), faker.date.past().toLocaleDateString('en-US'), STATUSES[Math.floor(Math.random() * STATUSES.length)]),
 ];
 
 function descendingComparator(a, b, orderBy) {
@@ -68,11 +77,11 @@ function stableSort(array, comparator) {
 }
 
 const headCells = [
-  { id: 'name', numeric: false, disablePadding: true, label: 'Dessert (100g serving)' },
-  { id: 'calories', numeric: true, disablePadding: false, label: 'Calories' },
-  { id: 'fat', numeric: true, disablePadding: false, label: 'Fat (g)' },
-  { id: 'carbs', numeric: true, disablePadding: false, label: 'Carbs (g)' },
-  { id: 'protein', numeric: true, disablePadding: false, label: 'Protein (g)' },
+  { id: 'name', numeric: false, disablePadding: true, label: 'User Info' },
+  { id: 'Job_Info', numeric: false, disablePadding: false, label: 'Job Info' },
+  { id: 'Joining_Date', numeric: false, disablePadding: false, label: 'Joining Date' },
+  { id: 'Status', numeric: false, disablePadding: false, label: 'Status' },
+  { id: 'Action', numeric: false, disablePadding: false, label: 'Action' }
 ];
 
 function EnhancedTableHead(props) {
@@ -82,18 +91,18 @@ function EnhancedTableHead(props) {
   };
 
   return (
-    <TableHead>
+    <TableHead >
       <TableRow>
-        <TableCell padding="checkbox">
+        <TableCell className={classes.tableHeaderCell} padding="checkbox">
           <Checkbox
             indeterminate={numSelected > 0 && numSelected < rowCount}
             checked={rowCount > 0 && numSelected === rowCount}
             onChange={onSelectAllClick}
-            inputProps={{ 'aria-label': 'select all desserts' }}
+            inputProps={{ 'aria-label': 'select all users' }}
           />
         </TableCell>
         {headCells.map((headCell) => (
-          <TableCell
+          <TableCell className={classes.tableHeaderCell}
             key={headCell.id}
             align={headCell.numeric ? 'right' : 'left'}
             padding={headCell.disablePadding ? 'none' : 'normal'}
@@ -164,7 +173,7 @@ const EnhancedTableToolbar = (props) => {
         </Typography>
       ) : (
         <Typography className={classes.title} variant="h6" id="tableTitle" component="div">
-          Nutrition
+          Users
         </Typography>
       )}
 
@@ -192,14 +201,11 @@ EnhancedTableToolbar.propTypes = {
 const useStyles = makeStyles((theme) => ({
   root: {
     margin: '30px 375px',
-    width: '60%',
+    width: '70%',
   },
   paper: {
     width: '100%',
     marginBottom: theme.spacing(2),
-  },
-  table: {
-    minWidth: 750,
   },
   visuallyHidden: {
     border: 0,
@@ -212,12 +218,42 @@ const useStyles = makeStyles((theme) => ({
     top: 20,
     width: 1,
   },
+  table: {
+    minWidth: 650,
+  },
+  tableContainer: {
+      borderRadius: 15
+  },
+  tableHeaderCell: {
+      fontWeight: 'bold',
+      fontSize : '20px',
+      backgroundColor: theme.palette.primary.dark,
+      color: theme.palette.getContrastText(theme.palette.primary.dark)
+  },
+  avatar: {
+      margin:'10px 5px',
+      backgroundColor: theme.palette.primary.light,
+      color: theme.palette.getContrastText(theme.palette.primary.light)
+  },
+  name: {
+      fontWeight: 'bold',
+      color: theme.palette.secondary.dark
+  },
+  status: {
+      fontWeight: 'bold',
+      fontSize: '0.75rem',
+      color: 'white',
+      backgroundColor: 'grey',
+      borderRadius: 8,
+      padding: '3px 10px',
+      display: 'inline-block'
+  }
 }));
 
 export default function CheckBoxTable() {
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
-  const [orderBy, setOrderBy] = React.useState('calories');
+  const [orderBy, setOrderBy] = React.useState('jobTitle');
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
@@ -279,7 +315,7 @@ export default function CheckBoxTable() {
     <div className={classes.root}>
       <Paper className={classes.paper}>
         <EnhancedTableToolbar numSelected={selected.length} />
-        <TableContainer>
+        <TableContainer className={classes.tableContainer}>
           <Table
             className={classes.table}
             aria-labelledby="tableTitle"
@@ -319,12 +355,41 @@ export default function CheckBoxTable() {
                         />
                       </TableCell>
                       <TableCell component="th" id={labelId} scope="row" padding="none">
-                        {row.name}
+                      <Grid container>
+                      <Grid item lg={2}>
+                          <Avatar alt={row.name} src='.' className={classes.avatar}/>
+                      </Grid>
+                      <Grid item lg={10}>
+                          <Typography className={classes.name}>{row.name}</Typography>
+                          <Typography color="textSecondary" variant="body2">{row.email}</Typography>
+                          <Typography color="textSecondary" variant="body2">{row.phone}</Typography>
+                      </Grid>
+                      </Grid>
                       </TableCell>
-                      <TableCell align="right">{row.calories}</TableCell>
-                      <TableCell align="right">{row.fat}</TableCell>
-                      <TableCell align="right">{row.carbs}</TableCell>
-                      <TableCell align="right">{row.protein}</TableCell>
+                      <TableCell align="Left">
+                      <Typography color="primary" variant="subtitle2">{row.jobTitle}</Typography>
+                      <Typography color="textSecondary" variant="body2">{row.company}</Typography>
+                      </TableCell>
+                      <TableCell align="Left">{row.joinDate}</TableCell>
+                      <TableCell align="Left">
+                      <Typography 
+                        className={classes.status}
+                        style={{
+                        backgroundColor: 
+                        ((row.status === 'Client' && 'green') ||
+                        (row.status === 'Pastry' && 'blue') ||
+                        (row.status === 'Blocked' && 'orange'))
+                        }}>
+                        {row.status}
+                        </Typography>
+                        </TableCell>
+                        <TableCell align="Left">
+                            <Tooltip title="Edit">
+                                <IconButton aria-label="Edit">
+                                <EditIcon />
+                                </IconButton>
+                            </Tooltip>
+                        </TableCell>
                     </TableRow>
                   );
                 })}
