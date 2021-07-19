@@ -13,24 +13,13 @@ import Add from '@material-ui/icons/Cake';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import { BlurLinear } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(5),
     display: 'flex',
+    marginLeft : theme.spacing(15),
     flexDirection: 'column',
     alignItems: 'center',
   },
@@ -39,11 +28,21 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: '100%', 
+    width: '863px',
+    height: '340px',
+    top: '323px',
     marginTop: theme.spacing(1),
   },
   submit: {
     margin: theme.spacing(2, 0, 2),
+    borderRadius: '50px',
+    width: '30%',
+  },
+  cancel: {
+    margin: theme.spacing(2, 0, 2),
+    borderRadius: '50px',
+    width: '30%',
+    left : '40%',
   },
 }));
 
@@ -61,6 +60,37 @@ export default function SignIn() {
           Add a pastry account
         </Typography>
         <form className={classes.form} noValidate>
+        <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="pastryName"
+            label="Pastry Name"
+            name="pastryName"
+            autoComplete="Pastry Name"
+            autoFocus
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="pastryDescription"
+            label="Pastry Description"
+            name="pastryDescription"
+            autoComplete="Pastry Description"
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="tel_number"
+            label="Telephone Number"
+            name="tel_number"
+            autoComplete="Telephone Number"
+          />
           <TextField
             variant="outlined"
             margin="normal"
@@ -70,7 +100,6 @@ export default function SignIn() {
             label="Email Address"
             name="email"
             autoComplete="email"
-            autoFocus
           />
           <TextField
             variant="outlined"
@@ -83,20 +112,26 @@ export default function SignIn() {
             id="password"
             autoComplete="current-password"
           />
+          <div>
           <Button
             type="submit"
-            fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
           >
             Save
           </Button>
+          <Button
+            type="cancel"
+            variant="contained"
+            color="secondary"
+            className={classes.cancel}
+          >
+            cancel
+          </Button>
+          </div>
         </form>
       </div>
-      <Box mt={8}>
-        <Copyright />
-      </Box>
     </Container>
   );
 }

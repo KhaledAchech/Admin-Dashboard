@@ -15,7 +15,7 @@ function Sidebar() {
     const Notifications_fct = () => { console.log('notes ...')}
     return (
         <>
-        <IconContext.Provider value = {{color: '#fff'}}>
+        
             
             <div className="sidebar">
                 <Link to="#" className='menu-bars'>
@@ -51,7 +51,6 @@ function Sidebar() {
                     })}
                 </ul>
             </nav>
-            </IconContext.Provider>
         </>      
 
     )
