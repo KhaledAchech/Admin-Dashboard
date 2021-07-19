@@ -50,6 +50,12 @@ export const SideBarData = [
         path : '/checkBoxTables',
         icon : <IoIcons.IoIosSquare/>,
         cName : 'nav-text'
+    },
+    {
+        title : 'Form',
+        path : '/form',
+        icon : <IoIcons.IoIosFiling/>,
+        cName : 'nav-text'
     }
 
 ]

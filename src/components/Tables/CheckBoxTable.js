@@ -27,6 +27,7 @@ import
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit'
 import FilterListIcon from '@material-ui/icons/FilterList';
+import AddIcon from '@material-ui/icons/AddCircleOutlineSharp';
 import faker from 'faker';
 
 function createData(name,email , phone,  jobTitle, company, joinDate, status) {
@@ -176,7 +177,11 @@ const EnhancedTableToolbar = (props) => {
           Users
         </Typography>
       )}
-
+      <Tooltip title="Add user">
+          <IconButton aria-label="add">
+            <AddIcon />
+          </IconButton>
+        </Tooltip>
       {numSelected > 0 ? (
         <Tooltip title="Delete">
           <IconButton aria-label="delete">

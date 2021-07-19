@@ -1,9 +1,12 @@
 import faker from 'faker';
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import AddIcon from '@material-ui/icons/AddCircleOutlineSharp';
+import EditIcon from '@material-ui/icons/Edit'
 import { 
     Table,
     TableBody,
+    Button,
     TableCell,
     TableContainer,
     TableHead,
@@ -13,17 +16,22 @@ import {
     Grid,
     Typography,
     TablePagination,
+    IconButton,
+    Tooltip,
     TableFooter
  } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
+
+  root: {
+    margin: '30px 375px',
+    width: '70%',
+    },
     table: {
       minWidth: 650,
     },
     tableContainer: {
-        borderRadius: 15,
-        margin: '30px 375px',
-        maxWidth: 950
+        borderRadius: 15
     },
     tableHeaderCell: {
         fontWeight: 'bold',
@@ -46,7 +54,21 @@ const useStyles = makeStyles((theme) => ({
         borderRadius: 8,
         padding: '3px 10px',
         display: 'inline-block'
-    }
+    },
+    paper: {
+      width: '100%',
+      marginBottom: theme.spacing(2),
+    },
+    button: {
+      margin: theme.spacing(1),
+      left : '70%',
+    },
+    title: {
+      margin: theme.spacing(1),
+      fontWeight: 'bold',
+      fontSize : '30px',
+      right : '10%'
+    },
   }));
 
 let USERS = [], STATUSES = ['Active', 'Pending', 'Blocked'];
@@ -77,7 +99,21 @@ function Tables() {
   };
 
   return (
-    <TableContainer component={Paper} className={classes.tableContainer} >
+    <div className={classes.root}>
+      <Paper className={classes.paper}>
+      <Typography className={classes.title} variant="h6" id="tableTitle">
+          Pasteries accounts :
+        </Typography>
+          <Button
+          variant="contained"
+          color="primary"
+          size="large"
+          className={classes.button}
+          startIcon={<AddIcon />}
+          > 
+          Add a new Pastry account
+          </Button>
+      <TableContainer component={Paper} className={classes.tableContainer} >
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -85,6 +121,7 @@ function Tables() {
             <TableCell className={classes.tableHeaderCell}>Job Info</TableCell>
             <TableCell className={classes.tableHeaderCell}>Joining Date</TableCell>
             <TableCell className={classes.tableHeaderCell}>Status</TableCell>
+            <TableCell className={classes.tableHeaderCell}>Actions</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -118,6 +155,13 @@ function Tables() {
                     }}
                   >{row.status}</Typography>
                 </TableCell>
+                <TableCell align="Center">
+                  <Tooltip title="Edit">
+                      <IconButton aria-label="Edit">
+                        <EditIcon />
+                          </IconButton>
+                  </Tooltip>
+                </TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -134,6 +178,10 @@ function Tables() {
         </TableFooter>
       </Table>
     </TableContainer>
+    </Paper>
+    </div>
+
+ 
   );
 }
 

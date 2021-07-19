@@ -21,11 +21,6 @@ function Sidebar() {
                 <Link to="#" className='menu-bars'>
                     <FaIcons.FaBars onClick={showSidebar}/>
                 </Link>
-                <div className="admin-box">
-                    <div className="welcome-sign">
-                        <h4>Welcome Admin</h4>
-                    </div>
-                </div>
                 <div className="btn-logout">
                 <Link to="#">
                     <IoIcons.IoIosLogOut  onClick={logout_fct}/>

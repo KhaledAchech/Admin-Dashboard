@@ -9,6 +9,7 @@ import Posts from './pages/Posts';
 import Users from './pages/Users';
 import Tables from './components/Tables/Tables';
 import CheckBoxTable from './components/Tables/CheckBoxTable';
+import Form from './components/Form/AddUserForm';
 
 function App() {
   return (
@@ -23,7 +24,8 @@ function App() {
         <Route path = '/posts' component={Posts} />      
         <Route path = '/users' component={Users} /> 
         <Route path = '/tables' component={Tables} />
-        <Route path = '/checkBoxTables' component={CheckBoxTable} />         
+        <Route path = '/checkBoxTables' component={CheckBoxTable} />
+        <Route path = '/form' component={Form} />   
       </Switch>
     </Router>
     </>
