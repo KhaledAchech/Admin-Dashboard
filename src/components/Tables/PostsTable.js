@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { Link } from 'react-router-dom';
+import Priority from '../PriorityChoice/Priority';
 import DetailsIcon from '@material-ui/icons/DeveloperBoard';
 import BlockIcon from '@material-ui/icons/BlockRounded';
 import { lighten, makeStyles } from '@material-ui/core/styles';
@@ -28,30 +28,28 @@ import
     } from '@material-ui/core';
 
 import DeleteIcon from '@material-ui/icons/Delete';
-import EditIcon from '@material-ui/icons/Edit'
 import FilterListIcon from '@material-ui/icons/FilterList';
-import AddIcon from '@material-ui/icons/AddCircleOutlineSharp';
 import faker from 'faker';
 
-function createData(name,email , phone,  jobTitle, company, joinDate, status) {
-  return { name, email, phone, jobTitle, company, joinDate, status };
+function createData(name,email , phone,  description, publishDate, status) {
+  return { name, email, phone, description, publishDate, status };
 }
 
-let STATUSES = ['Client', 'Pastry', 'Blocked'];
+let STATUSES = ['Published', 'Ready', 'Postponed'];
 const rows = [
-  createData(faker.name.findName(),faker.internet.email(),faker.phone.phoneNumber(), faker.name.jobTitle(), faker.company.companyName(), faker.date.past().toLocaleDateString('en-US'), STATUSES[Math.floor(Math.random() * STATUSES.length)]),
-  createData(faker.name.findName(),faker.internet.email(),faker.phone.phoneNumber(), faker.name.jobTitle(), faker.company.companyName(), faker.date.past().toLocaleDateString('en-US'), STATUSES[Math.floor(Math.random() * STATUSES.length)]),
-  createData(faker.name.findName(),faker.internet.email(),faker.phone.phoneNumber(), faker.name.jobTitle(), faker.company.companyName(), faker.date.past().toLocaleDateString('en-US'), STATUSES[Math.floor(Math.random() * STATUSES.length)]),
-  createData(faker.name.findName(),faker.internet.email(),faker.phone.phoneNumber(), faker.name.jobTitle(), faker.company.companyName(), faker.date.past().toLocaleDateString('en-US'), STATUSES[Math.floor(Math.random() * STATUSES.length)]),
-  createData(faker.name.findName(),faker.internet.email(),faker.phone.phoneNumber(), faker.name.jobTitle(), faker.company.companyName(), faker.date.past().toLocaleDateString('en-US'), STATUSES[Math.floor(Math.random() * STATUSES.length)]),
-  createData(faker.name.findName(),faker.internet.email(),faker.phone.phoneNumber(), faker.name.jobTitle(), faker.company.companyName(), faker.date.past().toLocaleDateString('en-US'), STATUSES[Math.floor(Math.random() * STATUSES.length)]),
-  createData(faker.name.findName(),faker.internet.email(),faker.phone.phoneNumber(), faker.name.jobTitle(), faker.company.companyName(), faker.date.past().toLocaleDateString('en-US'), STATUSES[Math.floor(Math.random() * STATUSES.length)]),
-  createData(faker.name.findName(),faker.internet.email(),faker.phone.phoneNumber(), faker.name.jobTitle(), faker.company.companyName(), faker.date.past().toLocaleDateString('en-US'), STATUSES[Math.floor(Math.random() * STATUSES.length)]),
-  createData(faker.name.findName(),faker.internet.email(),faker.phone.phoneNumber(), faker.name.jobTitle(), faker.company.companyName(), faker.date.past().toLocaleDateString('en-US'), STATUSES[Math.floor(Math.random() * STATUSES.length)]),
-  createData(faker.name.findName(),faker.internet.email(),faker.phone.phoneNumber(), faker.name.jobTitle(), faker.company.companyName(), faker.date.past().toLocaleDateString('en-US'), STATUSES[Math.floor(Math.random() * STATUSES.length)]),
-  createData(faker.name.findName(),faker.internet.email(),faker.phone.phoneNumber(), faker.name.jobTitle(), faker.company.companyName(), faker.date.past().toLocaleDateString('en-US'), STATUSES[Math.floor(Math.random() * STATUSES.length)]),
-  createData(faker.name.findName(),faker.internet.email(),faker.phone.phoneNumber(), faker.name.jobTitle(), faker.company.companyName(), faker.date.past().toLocaleDateString('en-US'), STATUSES[Math.floor(Math.random() * STATUSES.length)]),
-  createData(faker.name.findName(),faker.internet.email(),faker.phone.phoneNumber(), faker.name.jobTitle(), faker.company.companyName(), faker.date.past().toLocaleDateString('en-US'), STATUSES[Math.floor(Math.random() * STATUSES.length)]),
+  createData(faker.name.findName(),faker.internet.email(),faker.phone.phoneNumber(), faker.name.jobDescriptor(), faker.date.past().toLocaleDateString('en-US'), STATUSES[Math.floor(Math.random() * STATUSES.length)]),
+  createData(faker.name.findName(),faker.internet.email(),faker.phone.phoneNumber(), faker.name.jobDescriptor(), faker.date.past().toLocaleDateString('en-US'), STATUSES[Math.floor(Math.random() * STATUSES.length)]),
+  createData(faker.name.findName(),faker.internet.email(),faker.phone.phoneNumber(), faker.name.jobDescriptor(), faker.date.past().toLocaleDateString('en-US'), STATUSES[Math.floor(Math.random() * STATUSES.length)]),
+  createData(faker.name.findName(),faker.internet.email(),faker.phone.phoneNumber(), faker.name.jobDescriptor(), faker.date.past().toLocaleDateString('en-US'), STATUSES[Math.floor(Math.random() * STATUSES.length)]),
+  createData(faker.name.findName(),faker.internet.email(),faker.phone.phoneNumber(), faker.name.jobDescriptor(), faker.date.past().toLocaleDateString('en-US'), STATUSES[Math.floor(Math.random() * STATUSES.length)]),
+  createData(faker.name.findName(),faker.internet.email(),faker.phone.phoneNumber(), faker.name.jobDescriptor(), faker.date.past().toLocaleDateString('en-US'), STATUSES[Math.floor(Math.random() * STATUSES.length)]),
+  createData(faker.name.findName(),faker.internet.email(),faker.phone.phoneNumber(), faker.name.jobDescriptor(), faker.date.past().toLocaleDateString('en-US'), STATUSES[Math.floor(Math.random() * STATUSES.length)]),
+  createData(faker.name.findName(),faker.internet.email(),faker.phone.phoneNumber(), faker.name.jobDescriptor(), faker.date.past().toLocaleDateString('en-US'), STATUSES[Math.floor(Math.random() * STATUSES.length)]),
+  createData(faker.name.findName(),faker.internet.email(),faker.phone.phoneNumber(), faker.name.jobDescriptor(), faker.date.past().toLocaleDateString('en-US'), STATUSES[Math.floor(Math.random() * STATUSES.length)]),
+  createData(faker.name.findName(),faker.internet.email(),faker.phone.phoneNumber(), faker.name.jobDescriptor(), faker.date.past().toLocaleDateString('en-US'), STATUSES[Math.floor(Math.random() * STATUSES.length)]),
+  createData(faker.name.findName(),faker.internet.email(),faker.phone.phoneNumber(), faker.name.jobDescriptor(), faker.date.past().toLocaleDateString('en-US'), STATUSES[Math.floor(Math.random() * STATUSES.length)]),
+  createData(faker.name.findName(),faker.internet.email(),faker.phone.phoneNumber(), faker.name.jobDescriptor(), faker.date.past().toLocaleDateString('en-US'), STATUSES[Math.floor(Math.random() * STATUSES.length)]),
+  createData(faker.name.findName(),faker.internet.email(),faker.phone.phoneNumber(), faker.name.jobDescriptor(), faker.date.past().toLocaleDateString('en-US'), STATUSES[Math.floor(Math.random() * STATUSES.length)]),
 ];
 
 function descendingComparator(a, b, orderBy) {
@@ -81,10 +79,11 @@ function stableSort(array, comparator) {
 }
 
 const headCells = [
-  { id: 'name', numeric: false, disablePadding: true, label: 'User Info' },
-  { id: 'Job_Info', numeric: false, disablePadding: false, label: 'Job Info' },
-  { id: 'Joining_Date', numeric: false, disablePadding: false, label: 'Joining Date' },
+  { id: 'name', numeric: false, disablePadding: true, label: 'Publishing Pastry' },
+  { id: 'Post_Description', numeric: false, disablePadding: false, label: 'Post Description' },
+  { id: 'publish_Date', numeric: false, disablePadding: false, label: 'Publish Date' },
   { id: 'Status', numeric: false, disablePadding: false, label: 'Status' },
+  { id: 'Priority', numeric: false, disablePadding: false, label: 'Priority' },
   { id: 'Action', numeric: false, disablePadding: false, label: 'Action' }
 ];
 
@@ -102,7 +101,7 @@ function EnhancedTableHead(props) {
             indeterminate={numSelected > 0 && numSelected < rowCount}
             checked={rowCount > 0 && numSelected === rowCount}
             onChange={onSelectAllClick}
-            inputProps={{ 'aria-label': 'select all users' }}
+            inputProps={{ 'aria-label': 'select all Posts' }}
           />
         </TableCell>
         {headCells.map((headCell) => (
@@ -185,26 +184,9 @@ const EnhancedTableToolbar = (props) => {
         </Typography>
       ) : (
         <Typography className={classes.title} variant="h6" id="tableTitle" component="div">
-          Users
+          Posts
         </Typography>
       )}
-      {numSelected > 0 ? (
-        <Tooltip title="Add user">
-        <IconButton aria-label="add"
-          className={classes.iconHide}>
-          <AddIcon />
-        </IconButton>
-        </Tooltip>
-      ) : (
-          <Tooltip title="Add user">
-          <IconButton aria-label="add" component = {Link}
-            to = "../Form/AddUserForm"
-            className={classes.iconShow}>
-            <AddIcon />
-          </IconButton>
-          </Tooltip>
-      )}
-          
         {numSelected > 0 ? (
         <Tooltip title="Delete">
           <IconButton aria-label="delete">
@@ -399,29 +381,26 @@ export default function CheckBoxTable() {
                       </Grid>
                       </TableCell>
                       <TableCell align="Left">
-                      <Typography color="primary" variant="subtitle2">{row.jobTitle}</Typography>
-                      <Typography color="textSecondary" variant="body2">{row.company}</Typography>
+                      <Typography color="primary" variant="subtitle2">{row.description}</Typography>
                       </TableCell>
-                      <TableCell align="Left">{row.joinDate}</TableCell>
+                      <TableCell align="Left">{row.publishDate}</TableCell>
                       <TableCell align="Left">
                       <Typography 
                         className={classes.status}
                         style={{
                         backgroundColor: 
-                        ((row.status === 'Client' && 'green') ||
-                        (row.status === 'Pastry' && 'blue') ||
-                        (row.status === 'Blocked' && 'orange'))
+                        ((row.status === 'Published' && 'green') ||
+                        (row.status === 'Ready' && 'blue') ||
+                        (row.status === 'Postponed' && 'orange'))
                         }}>
                         {row.status}
                         </Typography>
                         </TableCell>
                         <TableCell align="Left">
+                        <Priority/>
+                        </TableCell>
+                        <TableCell align="Left">
                           <div>
-                          <Tooltip title="Edit" className={classes.icon}>
-                                <IconButton aria-label="Edit">
-                                <EditIcon />
-                                </IconButton>
-                            </Tooltip>
                             <Tooltip title="Details" className={classes.icon}>
                                 <IconButton aria-label="Details">
                                 <DetailsIcon />

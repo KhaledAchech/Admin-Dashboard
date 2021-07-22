@@ -1,10 +1,9 @@
 import React from 'react'
+import PostsTable from '../components/Tables/PostsTable';
 
 function Posts() {
     return (
-        <div className = 'posts'>
-            <h1>posts</h1>
-        </div>
+        <PostsTable/>
     )
 }
 

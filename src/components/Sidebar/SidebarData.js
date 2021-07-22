@@ -39,6 +39,7 @@ export const SideBarData = [
         icon : <IoIcons.IoMdClipboard/>,
         cName : 'nav-text'
     },
+    /*
     {
         title : 'Tables',
         path : '/tables',
@@ -57,5 +58,5 @@ export const SideBarData = [
         icon : <IoIcons.IoIosFiling/>,
         cName : 'nav-text'
     }
-
+    */
 ]

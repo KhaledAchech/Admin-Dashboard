@@ -1,11 +1,8 @@
 import faker from 'faker';
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Link } from 'react-router-dom';
-import AddIcon from '@material-ui/icons/AddCircleOutlineSharp';
-import EditIcon from '@material-ui/icons/Edit';
 import DetailsIcon from '@material-ui/icons/DeveloperBoard';
-import BlockIcon from '@material-ui/icons/BlockRounded';
+import S_Bar from '../SearchBar/S_Bar';
 import { 
     Table,
     TableBody,
@@ -72,25 +69,24 @@ const useStyles = makeStyles((theme) => ({
       fontSize : '30px',
       right : '10%'
     },
-    icon : {
-      padding: '3px',
-    }
+
   }));
 
-let USERS = [], STATUSES = ['Active', 'Pending', 'Blocked'];
+let ORDERS = [], STATUSES = ['Delivered', 'Pending', 'Canceled'];
 for(let i=0;i<14;i++) {
-    USERS[i] = {
-        name: faker.name.findName(),
+    ORDERS[i] = {
+        ID: faker.random.uuid(),
+        Pastry: faker.company.companyName,
         email: faker.internet.email(),
         phone: faker.phone.phoneNumber(),
-        jobTitle: faker.name.jobTitle(),
-        company: faker.company.companyName(),
-        joinDate: faker.date.past().toLocaleDateString('en-US'),
+        ToClient: faker.name.findName(),
+        Date: faker.date.past().toLocaleDateString('en-US'),
+        Due_Date: faker.date.future().toLocaleDateString('en-US'),
         status: STATUSES[Math.floor(Math.random() * STATUSES.length)]
     }
 }
 
-function Tables() {
+function OrderTable() {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -108,79 +104,60 @@ function Tables() {
     <div className={classes.root}>
       <Paper className={classes.paper}>
       <Typography className={classes.title} variant="h6" id="tableTitle">
-          Pasteries accounts :
+          List of Orders :
         </Typography>
-          <Button
-          component = {Link}
-          to = "../Form/AddUserForm"
-          variant="contained"
-          color="primary"
-          size="large"
-          className={classes.button}
-          startIcon={<AddIcon />}
-          > 
-          Add a new Pastry account
-          </Button>
       <TableContainer component={Paper} className={classes.tableContainer} >
+        <S_Bar/>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell className={classes.tableHeaderCell}>Pastry Info</TableCell>
-            <TableCell className={classes.tableHeaderCell}>Job Details</TableCell>
-            <TableCell className={classes.tableHeaderCell}>Joining Date</TableCell>
+            <TableCell className={classes.tableHeaderCell}>Order ID</TableCell>
+            <TableCell className={classes.tableHeaderCell}>From : Pastry</TableCell>
+            <TableCell className={classes.tableHeaderCell}>To : Client</TableCell>
+            <TableCell className={classes.tableHeaderCell}>Date of creation</TableCell>
+            <TableCell className={classes.tableHeaderCell}>Due Date</TableCell>
             <TableCell className={classes.tableHeaderCell}>Status</TableCell>
             <TableCell align="Center" className={classes.tableHeaderCell}>Actions</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {USERS.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
-            <TableRow key={row.name}>
+          {ORDERS.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
+            <TableRow key={row.ID}>
+                <TableCell>
+                {row.ID}
+                </TableCell>
               <TableCell>
                   <Grid container>
-                      <Grid item lg={2}>
-                          <Avatar alt={row.name} src='.' className={classes.avatar}/>
-                      </Grid>
                       <Grid item lg={10}>
-                          <Typography className={classes.name}>{row.name}</Typography>
-                          <Typography color="textSecondary" variant="body2">{row.email}</Typography>
+                          <Typography className={classes.name}>{row.Pastry}</Typography>
+                          <Typography color="primary" variant="subtitle2">{row.email}</Typography>
                           <Typography color="textSecondary" variant="body2">{row.phone}</Typography>
                       </Grid>
                   </Grid>
                 </TableCell>
               <TableCell>
-                  <Typography color="primary" variant="subtitle2">{row.jobTitle}</Typography>
-                  <Typography color="textSecondary" variant="body2">{row.company}</Typography>
+                  <Typography color="primary" variant="subtitle2">{row.ToClient}</Typography>
+                  <Typography color="textSecondary" variant="body2">{row.phone}</Typography>
                 </TableCell>
-              <TableCell>{row.joinDate}</TableCell>
+              <TableCell>{row.Date}</TableCell>
+              <TableCell>{row.Due_Date}</TableCell>
               <TableCell>
                   <Typography 
                     className={classes.status}
                     style={{
                         backgroundColor: 
-                        ((row.status === 'Active' && 'green') ||
+                        ((row.status === 'Delivered' && 'green') ||
                         (row.status === 'Pending' && 'blue') ||
-                        (row.status === 'Blocked' && 'orange'))
+                        (row.status === 'Canceled' && 'red'))
                     }}
                   >{row.status}</Typography>
                 </TableCell>
                 <TableCell align="Left">
-                  <div>
-                  <Tooltip title="Edit" className={classes.icon}>
-                      <IconButton aria-label="Edit">
-                        <EditIcon />
-                          </IconButton>
-                  </Tooltip>
                   <Tooltip title="Details" className={classes.icon}>
                       <IconButton aria-label="Details">
                         <DetailsIcon />
                           </IconButton>
                   </Tooltip>
-                  <Tooltip title="Block" className={classes.icon}>
-                      <IconButton aria-label="Block">
-                        <BlockIcon />
-                          </IconButton>
-                  </Tooltip>
-                  </div> 
                 </TableCell>
             </TableRow>
           ))}
@@ -189,7 +166,7 @@ function Tables() {
         <TablePagination
             rowsPerPageOptions={[5, 10, 15]}
             component="div"
-            count={USERS.length}
+            count={ORDERS.length}
             rowsPerPage={rowsPerPage}
             page={page}
             onChangePage={handleChangePage}
@@ -205,4 +182,4 @@ function Tables() {
   );
 }
 
-export default Tables;
+export default OrderTable;

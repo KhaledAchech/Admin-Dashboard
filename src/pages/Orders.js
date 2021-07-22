@@ -1,10 +1,8 @@
 import React from 'react'
-
+import OrderTable from '../components/Tables/OrderTable';
 function Orders() {
     return (
-        <div className = 'orders'>
-            <h1>orders</h1>
-        </div>
+        <OrderTable/>
     )
 }
 

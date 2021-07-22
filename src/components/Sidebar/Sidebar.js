@@ -27,7 +27,7 @@ function Sidebar() {
                 </Link>
                 </div>
                 <div className="btn-notification">
-                <Link to="#">
+                <Link to="/notifications">
                     <IoIcons.IoIosNotifications onClick={Notifications_fct}/>
                 </Link>
                 </div>

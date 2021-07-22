@@ -1,10 +1,9 @@
 import React from 'react'
+import NotifcationsTable from '../components/Tables/NotificationsTable';
 
 function Notifications() {
     return (
-        <div className = 'notifications'>
-            <h1>notifications</h1>
-        </div>
+        <NotifcationsTable/>
     )
 }
 
