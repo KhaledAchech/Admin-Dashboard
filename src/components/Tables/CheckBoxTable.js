@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { Link } from 'react-router-dom';
+import DetailsIcon from '@material-ui/icons/DeveloperBoard';
+import BlockIcon from '@material-ui/icons/BlockRounded';
 import { lighten, makeStyles } from '@material-ui/core/styles';
 import 
     {
@@ -156,6 +159,14 @@ const useToolbarStyles = makeStyles((theme) => ({
   title: {
     flex: '1 1 100%',
   },
+  iconHide: 
+  {
+    opacity:'0%',
+  },
+  iconShow: 
+  {
+    opacity:'100%',
+  }
 }));
 
 const EnhancedTableToolbar = (props) => {
@@ -177,23 +188,35 @@ const EnhancedTableToolbar = (props) => {
           Users
         </Typography>
       )}
-      <Tooltip title="Add user">
-          <IconButton aria-label="add">
+      {numSelected > 0 ? (
+        <Tooltip title="Add user">
+        <IconButton aria-label="add"
+          className={classes.iconHide}>
+          <AddIcon />
+        </IconButton>
+        </Tooltip>
+      ) : (
+          <Tooltip title="Add user">
+          <IconButton aria-label="add" component = {Link}
+            to = "../Form/AddUserForm"
+            className={classes.iconShow}>
             <AddIcon />
           </IconButton>
-        </Tooltip>
-      {numSelected > 0 ? (
+          </Tooltip>
+      )}
+          
+        {numSelected > 0 ? (
         <Tooltip title="Delete">
           <IconButton aria-label="delete">
             <DeleteIcon />
           </IconButton>
         </Tooltip>
       ) : (
-        <Tooltip title="Filter list">
+          <Tooltip title="Filter list">
           <IconButton aria-label="filter list">
             <FilterListIcon />
           </IconButton>
-        </Tooltip>
+          </Tooltip>
       )}
     </Toolbar>
   );
@@ -236,7 +259,7 @@ const useStyles = makeStyles((theme) => ({
       color: theme.palette.getContrastText(theme.palette.primary.dark)
   },
   avatar: {
-      margin:'10px 5px',
+      margin:'8px 2px',
       backgroundColor: theme.palette.primary.light,
       color: theme.palette.getContrastText(theme.palette.primary.light)
   },
@@ -252,6 +275,9 @@ const useStyles = makeStyles((theme) => ({
       borderRadius: 8,
       padding: '3px 10px',
       display: 'inline-block'
+  },
+  icon : {
+    padding: '3px',
   }
 }));
 
@@ -346,7 +372,7 @@ export default function CheckBoxTable() {
                   return (
                     <TableRow
                       hover
-                      onClick={(event) => handleClick(event, row.name)}
+                      //onClick={(event) => handleClick(event, row.name)}
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
@@ -355,6 +381,7 @@ export default function CheckBoxTable() {
                     >
                       <TableCell padding="checkbox">
                         <Checkbox
+                          onClick={(event) => handleClick(event, row.name)}
                           checked={isItemSelected}
                           inputProps={{ 'aria-labelledby': labelId }}
                         />
@@ -389,11 +416,23 @@ export default function CheckBoxTable() {
                         </Typography>
                         </TableCell>
                         <TableCell align="Left">
-                            <Tooltip title="Edit">
+                          <div>
+                          <Tooltip title="Edit" className={classes.icon}>
                                 <IconButton aria-label="Edit">
                                 <EditIcon />
                                 </IconButton>
                             </Tooltip>
+                            <Tooltip title="Details" className={classes.icon}>
+                                <IconButton aria-label="Details">
+                                <DetailsIcon />
+                                </IconButton>
+                            </Tooltip>
+                            <Tooltip title="Block" className={classes.icon}>
+                                <IconButton aria-label="Block">
+                                <BlockIcon />
+                                </IconButton>
+                            </Tooltip>
+                          </div>
                         </TableCell>
                     </TableRow>
                   );

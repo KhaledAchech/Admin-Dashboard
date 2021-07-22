@@ -1,8 +1,11 @@
 import faker from 'faker';
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom';
 import AddIcon from '@material-ui/icons/AddCircleOutlineSharp';
-import EditIcon from '@material-ui/icons/Edit'
+import EditIcon from '@material-ui/icons/Edit';
+import DetailsIcon from '@material-ui/icons/DeveloperBoard';
+import BlockIcon from '@material-ui/icons/BlockRounded';
 import { 
     Table,
     TableBody,
@@ -69,6 +72,9 @@ const useStyles = makeStyles((theme) => ({
       fontSize : '30px',
       right : '10%'
     },
+    icon : {
+      padding: '3px',
+    }
   }));
 
 let USERS = [], STATUSES = ['Active', 'Pending', 'Blocked'];
@@ -105,6 +111,8 @@ function Tables() {
           Pasteries accounts :
         </Typography>
           <Button
+          component = {Link}
+          to = "../Form/AddUserForm"
           variant="contained"
           color="primary"
           size="large"
@@ -121,7 +129,7 @@ function Tables() {
             <TableCell className={classes.tableHeaderCell}>Job Info</TableCell>
             <TableCell className={classes.tableHeaderCell}>Joining Date</TableCell>
             <TableCell className={classes.tableHeaderCell}>Status</TableCell>
-            <TableCell className={classes.tableHeaderCell}>Actions</TableCell>
+            <TableCell align="Center" className={classes.tableHeaderCell}>Actions</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -155,12 +163,24 @@ function Tables() {
                     }}
                   >{row.status}</Typography>
                 </TableCell>
-                <TableCell align="Center">
-                  <Tooltip title="Edit">
+                <TableCell align="Left">
+                  <div>
+                  <Tooltip title="Edit" className={classes.icon}>
                       <IconButton aria-label="Edit">
                         <EditIcon />
                           </IconButton>
                   </Tooltip>
+                  <Tooltip title="Details" className={classes.icon}>
+                      <IconButton aria-label="Details">
+                        <DetailsIcon />
+                          </IconButton>
+                  </Tooltip>
+                  <Tooltip title="Block" className={classes.icon}>
+                      <IconButton aria-label="Block">
+                        <BlockIcon />
+                          </IconButton>
+                  </Tooltip>
+                  </div> 
                 </TableCell>
             </TableRow>
           ))}
