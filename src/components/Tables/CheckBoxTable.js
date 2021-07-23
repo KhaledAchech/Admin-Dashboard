@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { Link } from 'react-router-dom';
+import Notification from '../Notifications/Notification';
+import ConfirmDialog from '../Dialog/ConfirmDialog';
 import DetailsIcon from '@material-ui/icons/DeveloperBoard';
 import BlockIcon from '@material-ui/icons/BlockRounded';
 import { lighten, makeStyles } from '@material-ui/core/styles';
@@ -170,7 +172,21 @@ const useToolbarStyles = makeStyles((theme) => ({
 }));
 
 const EnhancedTableToolbar = (props) => {
-  const classes = useToolbarStyles();
+const [notify, setNotify] = React.useState({isOpen:false, message:'', type:''});
+const [confirmDialog, setConfirmDialog] = React.useState({isOpen:false, title:'', subTitle:''});
+const classes = useToolbarStyles();
+  const ClickDeleteBtn = id => {
+      setConfirmDialog({
+        ...confirmDialog,
+        isOpen:false
+      })
+      setNotify({
+        isOpen:true,
+        message: 'Deleted Successfully.',
+        type : 'error'
+      })
+
+  }
   const { numSelected } = props;
 
   return (
@@ -207,7 +223,17 @@ const EnhancedTableToolbar = (props) => {
           
         {numSelected > 0 ? (
         <Tooltip title="Delete">
-          <IconButton aria-label="delete">
+          <IconButton aria-label="delete" onClick={() =>
+            {
+              
+              setConfirmDialog({
+                isOpen : true,
+                title : 'Are you sure you want to delete this information ?',
+                subTitle :"you can't undo this operation.",
+                onConfirm: () => {ClickDeleteBtn(0)}
+                })
+                //ClickDeleteBtn
+            }}>
             <DeleteIcon />
           </IconButton>
         </Tooltip>
@@ -218,7 +244,13 @@ const EnhancedTableToolbar = (props) => {
           </IconButton>
           </Tooltip>
       )}
-    </Toolbar>
+      <Notification
+      notify = {notify}
+      setNotify = {setNotify}/>
+      <ConfirmDialog
+      confirmDialog = {confirmDialog}
+      setConfirmDialog = {setConfirmDialog} />
+      </Toolbar>
   );
 };
 
@@ -289,7 +321,21 @@ export default function CheckBoxTable() {
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-
+  const [notify, setNotify] = React.useState({isOpen:false, message:'', type:''});
+  const ClickEditBtn = () =>{
+      setNotify({
+        isOpen:true,
+        message: 'Submitted Successfully.',
+        type : 'success'
+      })
+  };
+  const ClickBlockBtn = () =>{
+    setNotify({
+      isOpen:true,
+      message: 'Blocked Successfully.',
+      type : 'info'
+    })
+  }
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
@@ -418,7 +464,7 @@ export default function CheckBoxTable() {
                         <TableCell align="Left">
                           <div>
                           <Tooltip title="Edit" className={classes.icon}>
-                                <IconButton aria-label="Edit">
+                                <IconButton aria-label="Edit" onClick = {ClickEditBtn}>
                                 <EditIcon />
                                 </IconButton>
                             </Tooltip>
@@ -428,10 +474,13 @@ export default function CheckBoxTable() {
                                 </IconButton>
                             </Tooltip>
                             <Tooltip title="Block" className={classes.icon}>
-                                <IconButton aria-label="Block">
+                                <IconButton aria-label="Block" onClick = {ClickBlockBtn}>
                                 <BlockIcon />
                                 </IconButton>
                             </Tooltip>
+                            <Notification
+                              notify = {notify}
+                              setNotify = {setNotify}/>
                           </div>
                         </TableCell>
                     </TableRow>
