@@ -52,7 +52,7 @@ const classes = useStyles();
             <Controls.Button
             text = "Yes"
             color = "secondary"
-            onClick={confirmDialog.onConfirm} />
+            onClick={confirmDialog.onConfirm}/>
             <Controls.Button
             text = "No"
             color = "default"
