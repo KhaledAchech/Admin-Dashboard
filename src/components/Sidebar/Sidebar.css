@@ -11,6 +11,17 @@
   font-size: 2rem;
   background: none;
 }
+.menu-icon {
+  margin-left: 2rem;
+  font-size: 2rem;
+  background: none;
+  color: linear-gradient(272.88deg, #686de0 4.95%, #4834d4 93.62%);
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: lighter;
+}
 
 .btn-logout {
   position: absolute;
@@ -53,7 +64,7 @@
   justify-content: center;
   position: fixed;
   top: 0;
-  left: -100%;
+  /*left: -100%;*/
   transition: 850ms;
 }
 
@@ -104,7 +115,14 @@
   justify-content: start;
   align-items: center;
 }
-
+.DashboardSign {
+  text-decoration: none;
+  color: #c6b4ce;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
+}
 span {
   margin-left: 16px;
 }
